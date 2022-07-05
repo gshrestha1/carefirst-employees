@@ -2,7 +2,6 @@ package com.carefirst.employees.controller;
 
 import com.carefirst.employees.exception.EmployeeNotFoundException;
 import com.carefirst.employees.mock.Mocks;
-import com.carefirst.employees.model.EmployeeEntity;
 import com.carefirst.employees.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
