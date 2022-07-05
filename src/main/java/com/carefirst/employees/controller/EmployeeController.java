@@ -29,7 +29,7 @@ public class EmployeeController {
 
     // Get details of a specific employee
     @GetMapping("/employees/{id}")
-    public EmployeeEntity one(@PathVariable Long id) {
+    public EmployeeEntity getEmployeeDetails(@PathVariable Long id) {
         LOGGER.info("Getting details of an employee with id = {}", id);
 
         return repository.findById(id)
@@ -38,7 +38,7 @@ public class EmployeeController {
 
     //Update an employee details
     @PutMapping("/employees/{id}")
-    public EmployeeEntity replaceEmployee(@RequestBody EmployeeEntity newEmployeeEntity, @PathVariable Long id) {
+    public EmployeeEntity updateEmployeeDetails(@RequestBody EmployeeEntity newEmployeeEntity, @PathVariable Long id) {
 
         LOGGER.info("Updating an employee with id = {}", id);
 
@@ -72,7 +72,7 @@ public class EmployeeController {
 
     // Create a new employee
     @PostMapping("/employees")
-    public EmployeeEntity newEmployee(@RequestBody EmployeeEntity newEmployeeEntity) {
+    public EmployeeEntity createEmployee(@RequestBody EmployeeEntity newEmployeeEntity) {
         LOGGER.info("Creating an employee...");
 
         return repository.save(newEmployeeEntity);
