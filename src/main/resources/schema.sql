@@ -7,7 +7,6 @@ create table EMPLOYEE
     FIRST_NAME        VARCHAR(250) not null,
     LAST_NAME         VARCHAR(250) not null,
     EMAIL_ADDRESS     VARCHAR(100) default NULL,
-    PHONE             VARCHAR(250) default NULL,
     BIRTH_DATE        DATE         not null,
     JOB_TITLE         VARCHAR(50)  default NULL,
     DEPARTMENT        VARCHAR(50)  default NULL,
@@ -16,4 +15,13 @@ create table EMPLOYEE
     MANAGER_REPORTING VARCHAR(250) default NULL,
     CREATION_DATE     DATE         not null,
     LAST_UPDATE_DATE  DATE         not null
+);
+
+DROP TABLE IF EXISTS PHONE;
+
+create table PHONE
+(
+    ID       INT
+        primary key,
+    PHONE        VARCHAR(20) not null
 );

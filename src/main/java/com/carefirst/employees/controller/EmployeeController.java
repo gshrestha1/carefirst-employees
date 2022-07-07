@@ -5,6 +5,7 @@ import com.carefirst.employees.model.AuthRequest;
 import com.carefirst.employees.model.EmployeeEntity;
 import com.carefirst.employees.repository.EmployeeRepository;
 import com.carefirst.employees.util.JwtUtil;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class EmployeeController {
     private AuthenticationManager authenticationManager;
 
     //Retrieve all Employees
+    @ApiOperation(value = "Retrieve all Employees.")
+    @ApiImplicitParams({@ApiImplicitParam(name = "authorization", dataType = "string", paramType = "header")})
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Retrieved all Employees successfully."),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "You are not forbidden to view the resource"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
     @GetMapping("/employees")
     public List<EmployeeEntity> getAllEmployees() {
         LOGGER.info("Getting all Employees...");
@@ -58,7 +65,7 @@ public class EmployeeController {
                     employee.setFirstName(newEmployeeEntity.getFirstName());
                     employee.setLastName(newEmployeeEntity.getLastName());
                     employee.setEmailAddress(newEmployeeEntity.getEmailAddress());
-                    employee.setPhone(newEmployeeEntity.getPhone());
+                    employee.setPhones(newEmployeeEntity.getPhones());
                     employee.setBirthDate(newEmployeeEntity.getBirthDate());
                     employee.setJobTitle(newEmployeeEntity.getJobTitle());
                     employee.setDepartment(newEmployeeEntity.getDepartment());

@@ -1,8 +1,11 @@
 package com.carefirst.employees.mock;
 
 import com.carefirst.employees.model.EmployeeEntity;
+import com.carefirst.employees.model.Phone;
 
+import java.awt.*;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Mocks {
 
@@ -13,7 +16,7 @@ public class Mocks {
         employeeEntity.setFirstName("John");
         employeeEntity.setLastName("Doe");
         employeeEntity.setEmailAddress("john.doe@email.com");
-        employeeEntity.setPhone("2311321231");
+        employeeEntity.setPhones(Arrays.asList(new Phone(1, "2311321231")));
         employeeEntity.setJobTitle("Worker");
         employeeEntity.setDepartment("Department");
         employeeEntity.setLocation("Baltimore, MD");

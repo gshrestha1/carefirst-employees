@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,8 +32,9 @@ public class EmployeeEntity {
     @Column(name = "EMAIL_ADDRESS")
     private String emailAddress;
 
-    @Column(name = "PHONE")
-    private String phone;
+    @OneToMany(targetEntity = Phone.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="EMPLOYEE_ID_FK",referencedColumnName = "ID")
+    private List<Phone> phones;
 
     @Column(name = "BIRTH_DATE")
     private LocalDate birthDate;
