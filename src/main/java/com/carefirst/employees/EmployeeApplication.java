@@ -27,7 +27,7 @@ public class EmployeeApplication {
 
         List<User> users = Stream.of(
                 new User(101, "gopalshrestha", "password", "gshrestha1@gmail.com"),
-                new User(102, "carefirst", "carefirst", "user1@gmail.com")
+                new User(102, "carefirst", "carefirst", "carefirst@carefirst.com")
         ).collect(Collectors.toList());
         repository.saveAll(users);
     }
