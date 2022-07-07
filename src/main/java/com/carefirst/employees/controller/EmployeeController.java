@@ -1,10 +1,15 @@
 package com.carefirst.employees.controller;
 
 import com.carefirst.employees.exception.EmployeeNotFoundException;
+import com.carefirst.employees.model.AuthRequest;
 import com.carefirst.employees.model.EmployeeEntity;
 import com.carefirst.employees.repository.EmployeeRepository;
+import com.carefirst.employees.util.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +24,12 @@ public class EmployeeController {
     EmployeeController(EmployeeRepository repository) {
         this.repository = repository;
     }
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     //Retrieve all Employees
     @GetMapping("/employees")
@@ -76,5 +87,17 @@ public class EmployeeController {
         LOGGER.info("Creating an employee...");
 
         return repository.save(newEmployeeEntity);
+    }
+
+    @PostMapping("/authenticate")
+    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
+            );
+        } catch (Exception ex) {
+            throw new Exception("invalid username/password");
+        }
+        return jwtUtil.generateToken(authRequest.getUserName());
     }
 }
